@@ -1,0 +1,219 @@
+@font-face { font-family: 'rawline'; src: url('.../fontes/rawline-100.ttf') format('truetype'); }
+@font-face { font-family: 'rawline'; src: url('../fonts/rawline-200.ttf') format('truetype'); }
+@font-face { font-family: 'rawline'; src: url('../fonts/rawline-300.ttf') format('truetype'); }
+@font-face { font-family: 'rawline'; src: url('../fonts/rawline-400.ttf') format('truetype'); }
+@font-face { font-family: 'rawline'; src: url('../fonts/rawline-500.ttf') format('truetype'); }
+@font-face { font-family: 'rawline'; src: url('../fonts/rawline-600.ttf') format('truetype'); }
+
+body{
+background-color: #fff;
+font-size: 0.8rem;
+font-family: 'rawline', Rawline, serif;
+line-height: 1.5;
+}
+*{
+    font-family: 'rawline', Rawline, serif;
+}
+
+#acessibilidade i{
+    margin: 0 1.20em 0 0;
+}
+
+a{
+    color: #333333;
+    text-decoration: none;
+}
+
+label{
+    margin: 0 0 5px 0;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+button{
+    border: none;
+    box-shadow: 0 2px 3px #00000029;
+    border-radius: 24px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.card span{
+    flex: 1 0 60%;
+}
+
+#termo-de-uso {
+   
+    margin: 20px 0 0 0;
+}
+
+.card a {
+    flex: 1 1 100%;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.button-ok, .button-continuar{
+    background: #1351B4 0 0 no-repeat padding-box;
+    
+}
+.item-login-signup-ways {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 0 0;
+    cursor: pointer;
+}
+
+#entenda-id-govbr-a, #termo-de-uso {
+    margin-left: 10px;
+    color: #1351B4;
+}
+
+.entenda-id-govbr {
+    display: flex;
+    text-align: center;
+    margin: 100px 0 0 0;
+    width: 100%;
+}
+
+main, .button-panel{
+    display: flex;
+    width: 100%;
+    margin: 30px 0 25px 0;
+}
+
+.button-continuar{
+    height: 40px;
+}
+input, select{
+    width: 86%;
+    height: 40px;
+    padding: 0 20px 0 20px;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    border: 1px solid #888888;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    //background-color: #fff;
+    height: 15vw;
+    
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0 3px 6px #00000029;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+h3{
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
+
+}
+
+img{
+    overflow-clip-margin: content-box;
+    overflow: clip;
+
+    vertical-align: -0.35rem;
+    margin: 0 10px 0 0;
+}
+
+/* Estilo da imagem no canto esquerdo */
+header img {
+    width: 100px;
+    height: 36px;
+    margin: 10px;
+    
+}
+
+/* Estilo do título do header */
+header h1 {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    color: #333;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    
+ 
+    //align-items: center;
+    background: #0000000 0 0 no-repeat padding-box;
+   //background-color: gray;
+    box-shadow: 0 2px 4px #00000033;
+    
+    margin: 30px auto auto auto;
+
+}
+
+.card{
+
+    padding: 10px;
+    align-items: flex-start;
+}
+
+.card a{
+    flex: 1 1 100%;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.card img{
+    max-height: 211px;
+    max-width: 279px;
+}
+
+.accordion-panel{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: none;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion-panel p{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 0.8rem;
+}
+/* Estilo responsivo para celular (largura máxima de 600px) */
+@media (max-width: 800px) {
+    .button-continuar{
+        width: 100%;
+    }
+
+
+    .item-login-signup{
+        margin-top: 30px;
+        align-items: center;
+
+    }
+
+    .container{
+        max-width: 340px;
+     
+    
+    }
+
+    #login-button-panel{
+        justify-content: space-evenly;
+    }
+
+    header {
+       
+    }
+
+    header img {
+
+    }
+}

